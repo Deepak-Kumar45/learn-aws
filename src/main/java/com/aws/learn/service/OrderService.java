@@ -54,8 +54,8 @@ public class OrderService {
     }
 
     public List<OrderDto> readAllOrder() {
-        return orderRepository.getAllOrders().stream().map(order->{
-            return OrderDto.builder()
+        return orderRepository.getAllOrders().stream().map(order->
+            OrderDto.builder()
                 .id(order.getId())
                 .orderId(order.getOrderId())
                 .userId(order.getUserId())
@@ -65,13 +65,11 @@ public class OrderService {
                 .status(order.getStatus())
                 .paymentMethod(order.getPaymentMethod())
                 .orderDate(order.getOrderDate())
-                .build();
-        }).toList();
+                .build()
+        ).toList();
     }
 
     public void saveAllProduct(List<OrderDto> orderDto) {
-        orderDto.stream().forEach(dto->this.saveOrder(dto));
+        orderDto.forEach(this::saveOrder);
     }
-    
-
 }
